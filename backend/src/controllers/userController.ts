@@ -56,36 +56,35 @@ export default {
 
     async EditUser(req: Request, res: Response) {
 
+        const usersRepo = getRepository(User)
         
         const { id } = req.params
-        const usersRepository = getRepository(User)
-        
-        const {
-            name,
-            email,
-            cpf,
-            about,
-            github
-        } = req.body
-        
 
-        const updatedUser = usersRepository.update(id, {
-            name: name,
-            email: email,
-            cpf: cpf,
-            about: about,
-            github: github
-        })
+        const data = req.body
 
-        
-
+        const name = data.name
         try {
-            await usersRepository.save(updatedUser)
+            await usersRepo.update(id, data)
             return res.status(201).json({message: `User ${name} successfully updated`})
         } catch (error) {
-            return res.status(502).json({message: `User ${name} updated with warning: ${error.message}`})
+            return res.status(500).json({message: `Internal server error, try again later`})
+        }
+    },
+
+
+
+
+    async ShowUser(req: Request, res: Response){
+        const userRepo = getRepository(User)
+
+        const { id } = req.params
+
+        try{
+            const user = await userRepo.findOneOrFail(id)
+            return res.status(200).json(user)
+        }catch(err){
+            return res.status(500).json({Error: "User not found"})
         }
 
-        
-    }
+    } 
 }
