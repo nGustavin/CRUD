@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
+import {Link} from 'react-router-dom'
 
 import {
 	Container,
@@ -52,7 +53,7 @@ const Card: Function = (): JSX.Element[] => {
 				</a>
 			</Top>
 		<ProfilePhoto>
-			<img src={`https://github.com/${user.github}.png`}/>
+			<img src={`https://github.com/${user.github}.png`} alt={`${user.name}`}/>
 		</ProfilePhoto>
 		<Info>
 			<h1>{user.name}</h1>

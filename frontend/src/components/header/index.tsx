@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {Container, MenuBar, AddUser } from './styles'
 
@@ -9,7 +10,9 @@ const Header: React.FC = () => {
             <div>
                 <input type="text" placeholder="Search User"/>
             </div>
-            <AddUser size="25"/>
+            <Link to="/create-user">
+                <AddUser size="25"/>
+            </Link>
         </Container>
     )
 }
