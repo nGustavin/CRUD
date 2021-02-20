@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../../services/api';
 
 import {
 	Container,
@@ -10,32 +11,64 @@ import {
 	Edit,
 	Delete } from './styles'
 
-const Card: React.FC = () => {
-	return(
-		<Container>
+
+interface User {
+	id: string;
+	name: string;
+	email: string;
+	cpf: number;
+	about: string;
+	github: string
+}
+
+const Card: Function = (): JSX.Element[] => {
+
+	const [users, setUsers] = useState<User[]>([])
+
+	useEffect(() => {
+		api.get('users').then(response => {
+			setUsers(response.data)
+		})
+	}, [])
+
+
+	function deleteUser(id: string) {
+		api.delete(`users/${id}`)
+		setUsers(users.filter(note => note.id !== id))
+	
+	}
+		
+	
+
+	return users.map(user => { 
+		return(
+		<Container key={user.id}>
 			<Top>
-				<a href="https://github.com/ngustavin">
+				<a href={`https://github.com/${user.github}`}>
 					<GitHub size="32"/>
 				</a>
-				<a href="https://github.com/ngustavin">
+				<a href={`https://${user.email}`}>
 					<Email size="32"/>
 				</a>
 			</Top>
 		<ProfilePhoto>
-			<img src="https://avatars.githubusercontent.com/u/37788848?s=460&u=db8029c50f9510f7384752c7f7fee516aee2459b&v=4"/>
+			<img src={`https://github.com/${user.github}.png`}/>
 		</ProfilePhoto>
 		<Info>
-			<h1>Gustavo Fernandes</h1>
+			<h1>{user.name}</h1>
 			<span>Software Engineer</span>
 			<div>
 				<Edit size="20" />
-				<p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+				<p>
+					{user.about}
 				</p>
-				<Delete size="20"/>
+				<Delete size="20" onClick={() => {deleteUser(user.id)}}/>
 			</div>
 		</Info>
 		</Container>
 		)
+	})
 	}
 	
+
 	export default Card

@@ -18,11 +18,6 @@ function App() {
           <Header/>
           <CardContainer>
             <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
           </CardContainer>
         </Container>
       </ThemeProvider>
