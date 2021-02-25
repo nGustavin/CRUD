@@ -38,8 +38,6 @@ const Card: Function = (): JSX.Element[] => {
 		setUsers(users.filter(note => note.id !== id))
 	
 	}
-		
-	
 
 	return users.map(user => { 
 		return(

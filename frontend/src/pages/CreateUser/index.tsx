@@ -1,14 +1,28 @@
-import React from 'react';
-import { Container, Form, BackgroundImg, Fields } from '../../styles/pages/CreateUser';
+import  React, {useState} from 'react';
+import { Container, Form, BackgroundImg, Fields, GoBack } from '../../styles/pages/CreateUser';
 import newUserImage from '../../assets/new-user.png'
 import {FiGithub, FiMail} from 'react-icons/fi'
-import {BsPerson, BsCardText, BsWallet} from 'react-icons/bs'
+import {BsPerson, BsCardText, BsWallet, BsArrowLeft} from 'react-icons/bs'
 import { GoMail } from 'react-icons/go'
+
+import { useHistory } from 'react-router-dom'
 
 const CreateUser: React.FC = () => {
 
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [github, setGithub] = useState('')
+    const [about, setAbout] = useState('')
+
+
+    const goBack = useHistory().goBack
     return(
         <Container>
+            <GoBack onClick={goBack}>
+                <BsArrowLeft size={49} fill="white"/>
+            </GoBack>
+
             <Form>
                 <BackgroundImg src={newUserImage}/>
                 <Fields>

@@ -128,3 +128,22 @@ export const Fields = styled.div`
 
   }
 `
+
+
+export const GoBack = styled.button`
+  background: none;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  height: 40px;
+  width: 70px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  cursor: pointer;
+`
+
+/* position: "absolute", width:"40px", left:"20px", top: "20px", height:"20px"/*  */ 
