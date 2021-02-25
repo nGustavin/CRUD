@@ -21,6 +21,7 @@ export const Form = styled.div`
   background: rgb(255,255,255);
   background: linear-gradient(144deg, rgba(255,255,255,1) 60%, rgba(230,230,230,1) 100%);
   border-radius: ${props => props.theme.layout.radius};
+  box-shadow: 0px 0px 55px 5px rgba(0, 0, 0, 0.1);
   /* padding: 20px; */
 `
 
